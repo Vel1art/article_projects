@@ -1,6 +1,9 @@
 from django.urls import path
 from webapp.views import ArticleListView, ArticleCreateView, ArticleDetailView, ArticleUpdateView, ArticleDeleteView, \
     CommentsCreateView, CommentsUpdateView, CommentsDeleteView
+from webapp.views.likes import toggle_like
+from webapp.views.comments_like import toggle_like_comment
+
 
 app_name = 'webapp'
 
@@ -13,4 +16,6 @@ urlpatterns = [
     path('article/<int:pk>/comment/add/', CommentsCreateView.as_view(), name='comment_add'),
     path('comment/<int:pk>/update/', CommentsUpdateView.as_view(), name='comment_update'),
     path('comment/<int:pk>/delete/', CommentsDeleteView.as_view(), name='comment_delete'),
+    path('articles/<int:pk>/like/', toggle_like, name='toggle_like'),
+    path('comments/<int:pk>/like/', toggle_like_comment, name='toggle_like_comment'),
 ]
