@@ -28,6 +28,9 @@
         <div class="card-body">
             <h5 class="card-title">{{ article.title }}</h5>
             <p class="card-text">{{ article.content }}</p>
+            <button class="btn btn-primary like-button" data-id="{{ article.id }}" data-type="article">
+                Like ({{ article.like_count }})
+            </button>
             {% if article.tags.exists %}
                 <p class="card-text">
                     Теги: {% for tag in article.tags.all %}{{ tag.name }}{% if forloop.last %}.{% else %},
@@ -44,7 +47,9 @@
                     <div class="card-body">
                         <h5 class="card-title">Автор: {{ comment.author }}</h5>
                         <p class="card-text">{{ comment.text }}</p>
-
+                        <button class="btn btn-primary like-button" data-id="{{ comment.id }}" data-type="comment">
+                            Like ({{ comment.like_count }})
+                        </button>
                         {% if perms.webapp.change_comment or request.user == comment.author %}
                             <a href="{% url "webapp:comment_update" comment.pk %}" class="btn btn-primary">Изменить</a>
                         {% endif %}
