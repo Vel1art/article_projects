@@ -36,8 +36,10 @@ class ArticleListView(ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         if self.search_value:
-            queryset = queryset.filter(Q(title__icontains=self.search_value) | Q(author__icontains=self.search_value))
-
+            queryset = queryset.filter(
+                Q(title__icontains=self.search_value) |
+                Q(author__username__icontains=self.search_value)  # Если author связан с User
+            )
         return queryset
 
     def get_context_data(self, **kwargs):

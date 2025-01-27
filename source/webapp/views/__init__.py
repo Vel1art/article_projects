@@ -5,3 +5,4 @@ from .articles import (ArticleListView,
                        ArticleDeleteView)
 
 from .comments import CommentsCreateView, CommentsUpdateView, CommentsDeleteView
+from .likes import toggle_like
